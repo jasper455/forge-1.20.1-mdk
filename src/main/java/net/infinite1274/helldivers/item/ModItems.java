@@ -44,13 +44,13 @@ public class ModItems {
             () -> new StratagemPickerItem(new Item.Properties().stacksTo(1)));
 
     public static final RegistryObject<Item> SMALL_BARRAGE = ITEMS.register("small_barrage",
-            () -> new StratagemItem(new Item.Properties()));
+            () -> new StratagemItem(new Item.Properties().stacksTo(1)));
     public static final RegistryObject<Item> BIG_BARRAGE = ITEMS.register("big_barrage",
-            () -> new StratagemItem(new Item.Properties()));
+            () -> new StratagemItem(new Item.Properties().stacksTo(1)));
     public static final RegistryObject<Item> HELLBOMB_ITEM = ITEMS.register("hellbomb_item",
-            () -> new StratagemItem(new Item.Properties()));
+            () -> new StratagemItem(new Item.Properties().stacksTo(1)));
     public static final RegistryObject<Item> PRECISION_STRIKE = ITEMS.register("precision_strike",
-            () -> new StratagemItem(new Item.Properties()));
+            () -> new StratagemItem(new Item.Properties().stacksTo(1)));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);

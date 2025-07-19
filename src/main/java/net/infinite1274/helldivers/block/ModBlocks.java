@@ -3,9 +3,12 @@ package net.infinite1274.helldivers.block;
 import net.infinite1274.helldivers.HelldiversMod;
 import net.infinite1274.helldivers.block.custom.HellbombBlock;
 import net.infinite1274.helldivers.item.ModItems;
+import net.infinite1274.helldivers.worldgen.tree.TestTreeGrower;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.SaplingBlock;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -23,6 +26,9 @@ public class ModBlocks {
 
     public static final RegistryObject<Block> HELLBOMB = registerBlock("hellbomb",
             () -> new HellbombBlock());
+
+    public static final RegistryObject<Block> TEST_SAPLING = registerBlock("test_sapling",
+            () -> new SaplingBlock(new TestTreeGrower(), BlockBehaviour.Properties.copy(Blocks.OAK_SAPLING)));
 
 
     private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block) {

@@ -1,1 +1,6 @@
-// 1.20.1	2025-06-05T15:34:39.663664	Datapack Entries
+// 1.20.1	2025-07-18T19:29:27.1907779	Datapack Entries
+bd3fd4a19c23fd8c0339cbe34e681521b4dc478d data/helldivers/dimension/super_destroyer_dim.json
+e241e971aacde6f4d0236c622c99d6c9caeb981e data/helldivers/dimension_type/super_destroyer_dim_type.json
+9fcd8f36f3edcf86ef2eb6982e975f6663144644 data/helldivers/forge/biome_modifier/add_tree_test.json
+8640dc6043c074c9d2eada5a5c1244cf10e77bdc data/helldivers/worldgen/configured_feature/test.json
+dcc708e2385d95ce87699f858751fd59110a57c7 data/helldivers/worldgen/placed_feature/test.json

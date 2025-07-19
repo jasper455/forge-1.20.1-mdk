@@ -12,6 +12,7 @@ import net.infinite1274.helldivers.util.KeyBinding;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.model.geom.ModelLayerLocation;
+import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.player.PlayerRenderer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
@@ -110,14 +111,22 @@ public class ModClientEvents {
         @SubscribeEvent
         public static void onAddLayers(EntityRenderersEvent.AddLayers event) {
             for (String skinType : event.getSkins()) {
-                PlayerRenderer renderer = event.getPlayerSkin(skinType);
-                HelldiverCapeModel capeModel = new HelldiverCapeModel(Minecraft.getInstance().getEntityModels()
-                        .bakeLayer(new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(
-                                "helldivers", "textures/entity/helldiver_cape.png"), "main")));
+                try {
+                    EntityRenderer<?> renderer = event.getSkin(skinType);
+                    if (renderer instanceof PlayerRenderer playerRenderer) {
+                        HelldiverCapeModel capeModel = new HelldiverCapeModel(Minecraft.getInstance().getEntityModels()
+                                .bakeLayer(new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(
+                                        "helldivers", "textures/entity/helldiver_cape.png"), "main")));
 
-                renderer.addLayer(new HelldiverCapeLayer(renderer, capeModel));
+                        playerRenderer.addLayer(new HelldiverCapeLayer(playerRenderer, capeModel));
+                    }
+                } catch (Exception e) {
+                    // Log the error but continue execution
+                    System.out.println("Failed to add cape layer for skin type: " + skinType);
+                }
             }
         }
+
 
         @SubscribeEvent
         public static void onRegisterLayers(EntityRenderersEvent.RegisterLayerDefinitions event) {

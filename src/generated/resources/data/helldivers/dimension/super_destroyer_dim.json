@@ -1,0 +1,17 @@
+{
+  "type": "helldivers:super_destroyer_dim_type",
+  "generator": {
+    "type": "minecraft:flat",
+    "settings": {
+      "biome": "minecraft:the_void",
+      "lakes": false,
+      "features": false,
+      "layers": [
+        {
+          "height": 256,
+          "block": "minecraft:air"
+        }
+      ]
+    }
+  }
+}

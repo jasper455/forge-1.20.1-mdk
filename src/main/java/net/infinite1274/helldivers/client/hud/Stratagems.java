@@ -11,6 +11,7 @@ import net.infinite1274.helldivers.sound.ModSounds;
 import net.infinite1274.helldivers.util.KeyBinding;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -369,8 +370,22 @@ public class Stratagems {
             resetInputValues();
         }
         if (BigBarrageHud.allInputsDown) {
-            PacketHandler.sendToServer(new SGiveStratagemOrbPacket("Orbital 380MM HE Barrage"));
+            StratagemPickerInventory inventory = getPickerInventory(player);
+            if (inventory != null && inventory.contains(ModItems.BIG_BARRAGE.get().getDefaultInstance())) {
+                int index = inventory.getSlotWithItem(ModItems.BIG_BARRAGE.get().getDefaultInstance());
+                if (index >= 0) {
+                    PacketHandler.sendToServer(new SGiveStratagemOrbPacket("Orbital 380MM HE Barrage"));
+                    inventory.removeItem(index, 64);
+                    // Reset immediately after processing
+                    BigBarrageHud.allInputsDown = false;
+                    BigBarrageHud.resetInputValues();
+                }
+            }
+            // Always reset even if conditions weren't met
+            resetInputValues();
         }
+
+
     }
 
 
